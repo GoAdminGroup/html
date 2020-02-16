@@ -14,7 +14,7 @@ type Attribute M
 func (s Style) String() template.HTML {
 	res := ""
 	for k, v := range s {
-		res += k + ":" + v
+		res += k + ":" + v + ";"
 	}
 	if res != "" {
 		res = ` style="` + res + `"`
@@ -25,10 +25,10 @@ func (s Style) String() template.HTML {
 func (s Attribute) String() template.HTML {
 	res := ""
 	for k, v := range s {
-		res += k + `="` + v + `"`
+		res += k + `="` + v + `" `
 	}
 	if res != "" {
-		res = ` ` + res
+		res = ` ` + res[:len(res)-1]
 	}
 	return template.HTML(res)
 }
@@ -158,6 +158,14 @@ func AEl() Element {
 
 func A(content template.HTML, ms ...M) template.HTML {
 	return AEl().SetContent(content).SetStyleAndAttr(ms).Get()
+}
+
+func UlEl() Element {
+	return BaseEl().SetTag("ul")
+}
+
+func Ul(content template.HTML, ms ...M) template.HTML {
+	return UlEl().SetContent(content).SetStyleAndAttr(ms).Get()
 }
 
 func H1El() Element {
