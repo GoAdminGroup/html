@@ -168,6 +168,33 @@ func Ul(content template.HTML, ms ...M) template.HTML {
 	return UlEl().SetContent(content).SetStyleAndAttr(ms).Get()
 }
 
+func LiEl() Element {
+	return BaseEl().SetTag("li")
+}
+
+func Li(content template.HTML, ms ...M) template.HTML {
+	return LiEl().SetContent(content).SetStyleAndAttr(ms).Get()
+}
+
+func BEl() Element {
+	return BaseEl().SetTag("b")
+}
+
+func B(content template.HTML, ms ...M) template.HTML {
+	return BEl().SetContent(content).SetStyleAndAttr(ms).Get()
+}
+
+func Br(num ...int) template.HTML {
+	c := template.HTML("<br>")
+	if len(num) > 0 {
+		c = ""
+		for range num {
+			c += "<br>"
+		}
+	}
+	return c
+}
+
 func H1El() Element {
 	return BaseEl().SetTag("h1")
 }
